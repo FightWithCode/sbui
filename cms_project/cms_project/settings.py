@@ -251,3 +251,9 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'c2f513ef64aaa0'
+EMAIL_HOST_PASSWORD = 'f39120c9bbfadb'
+EMAIL_PORT = '2525'
