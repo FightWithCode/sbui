@@ -180,6 +180,13 @@ INSTALLED_APPS = [
     'djangocms_googlemap',
     'djangocms_video',
     'cms_project',
+    'aldryn_apphooks_config',
+    'parler',
+    'taggit',
+    'taggit_autosuggest',
+    'meta',
+    'sortedm2m',
+    'djangocms_blog',
 ]
 
 LANGUAGES = (
@@ -251,9 +258,16 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+META_SITE_PROTOCOL = 'https'  # set 'http' for non ssl enabled websites
+META_USE_SITES = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = 'c2f513ef64aaa0'
 EMAIL_HOST_PASSWORD = 'f39120c9bbfadb'
 EMAIL_PORT = '2525'
+
+META_USE_OG_PROPERTIES=True
+META_USE_TWITTER_PROPERTIES=True
+META_USE_GOOGLEPLUS_PROPERTIES=True # django-meta 1.x+
+META_USE_SCHEMAORG_PROPERTIES=True  # django-meta 2.x+

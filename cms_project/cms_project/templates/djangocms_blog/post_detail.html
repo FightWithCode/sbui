@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load cms_tags i18n easy_thumbnails_tags %}
+
+{% block canonical_url %}<link rel="canonical" href="{{ meta.url }}"/>{% endblock canonical_url %}
+{% block title %}{{ post.get_title }}{% endblock %}
+
+{% block content %}
+    {% placeholder "content" or %}
+        <section class="bg-light py-10">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="single-post">
+                            <h1>{% render_model post "title" %}</h1>
+                            <p class="lead">{% render_model post "subtitle" %}</p>
+                            <img class="img-fluid mb-2" src="{{ post.main_image.url }}" alt="{{ post.main_image.default_alt_text }}" style="width:100%;" />
+                            <div class="single-post-text my-5">
+                                {% if post.app_config.use_placeholder %}
+                                    <div class="blog-content">{% render_placeholder post.content %}</div>
+                                {% else %}
+                                    <div class="blog-content">{% render_model post "post_text" "post_text" "" "safe" %}</div>
+                                {% endif %}
+                                <hr class="my-5" />
+                                <div class="text-center"><a class="btn btn-transparent-dark btn-marketing rounded-pill" href="/en/blog">Back to Blog Overview</a></div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb-5">
+                                <div class="single-post-meta mr-4">
+                                    <div class="single-post-meta-details">
+                                        <div class="single-post-meta-details-name">Admin</div>
+                                        <div class="single-post-meta-details-date">{{post.date_published}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endplaceholder %}
+{% endblock content %}

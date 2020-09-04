@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load cms_tags i18n easy_thumbnails_tags %}
+
+{% block canonical_url %}<link rel="canonical" href="{{ meta.url }}"/>{% endblock canonical_url %}
+{% block title %}{{ post.get_title }}{% endblock %}
+
+{% block content %}
+    {% placeholder "content" or %}
+    <div class="container">    
+        <div class="row">
+            {% for post in post_list %}
+            <div class="col-md-6 col-xl-4 mb-5">
+                <a class="card post-preview lift h-100" href="{{ post.get_absolute_url }}">
+                    <img class="card-img-top" src="{{ post.main_image.url }}" alt="{{ post.main_image.default_alt_text }}"  />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.subtitle|slice:":255" }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="post-preview-meta">
+                            <div class="post-preview-meta-details">
+                                <div class="post-preview-meta-details-name">Admin</div>
+                                <div class="post-preview-meta-details-date">{{post.date_published}}</div>
+                            </div>
+                        </div>
+                    </div></a
+                >
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endplaceholder %}
+{% endblock content %}
