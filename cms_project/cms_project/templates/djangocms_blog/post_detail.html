@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load cms_tags i18n easy_thumbnails_tags %}
 
-{% block canonical_url %}<link rel="canonical" href="{{ meta.url }}"/>{% endblock canonical_url %}
-{% block title %}{{ post.get_title }}{% endblock %}
+        {% block meta %}
+        <meta name="description" content="{{post.get_description}}" />
+        <meta name="keywords" content="{{post.get_keywords}}">
+        <title>{{post.title}} - Rental</title>
+        {% endblock meta %}
 
 {% block content %}
     {% placeholder "content" or %}
@@ -13,6 +16,18 @@
                         <div class="single-post">
                             <h1>{% render_model post "title" %}</h1>
                             <p class="lead">{% render_model post "subtitle" %}</p>
+                            <div class="d-flex align-items-center justify-content-between mb-5">
+                                <div class="single-post-meta mr-4">
+                                    <img class="single-post-meta-img" src="https://source.unsplash.com/QAB-WJcbgJk/100x100" />
+                                    <div class="single-post-meta-details">
+                                        <div class="single-post-meta-details-name">Admin</div>
+                                        <div class="single-post-meta-details-date">{{post.date_published}}</div>
+                                    </div>
+                                </div>
+                                <div class="single-post-meta-links">
+                                    <a href="#!"><i class="fab fa-twitter fa-fw"></i></a><a href="#!"><i class="fab fa-facebook-f fa-fw"></i></a><a href="#!"><i class="fas fa-bookmark fa-fw"></i></a>
+                                </div>
+                            </div>
                             <img class="img-fluid mb-2" src="{{ post.main_image.url }}" alt="{{ post.main_image.default_alt_text }}" style="width:100%;" />
                             <div class="single-post-text my-5">
                                 {% if post.app_config.use_placeholder %}
