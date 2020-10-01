@@ -3,6 +3,9 @@ from .models import ContactUsQuery
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 
 @csrf_exempt
@@ -28,3 +31,11 @@ def ContactFormView(request):
 
 	html = "<center><div class=\"container\"><h1>Thanks for Contacting us<br>Return to <a href=\"/\">Home</a></h1></div></center>"
 	return HttpResponse(html)
+
+
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        content = {'message': 'Hello, World!'}
+        return Response(content)

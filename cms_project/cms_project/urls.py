@@ -11,6 +11,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 from . import views
+from rest_framework_simplejwt import views as jwt_views
 
 admin.autodiscover()
 
@@ -21,10 +22,14 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^admin/', admin.site.urls),  # NOQA
-    url(r'^', include('cms.urls')),
-    path('contact-form', views.ContactFormView),
+    path('contact-form', views.ContactFormView),   
+    url('api/token/', jwt_views.TokenObtainPairView.as_view()),
+    url('api/token/refresh/', jwt_views.TokenRefreshView.as_view()),
+    url('hello/', views.HelloView.as_view()),
     url(r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
+    url(r'^', include('cms.urls')),
 )
+    
 
 # This is only needed when using runserver.
 if settings.DEBUG:

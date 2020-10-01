@@ -187,6 +187,7 @@ INSTALLED_APPS = [
     'meta',
     'sortedm2m',
     'djangocms_blog',
+    'rest_framework',
 ]
 
 LANGUAGES = (
@@ -271,3 +272,9 @@ META_USE_OG_PROPERTIES=True
 META_USE_TWITTER_PROPERTIES=True
 META_USE_GOOGLEPLUS_PROPERTIES=True # django-meta 1.x+
 META_USE_SCHEMAORG_PROPERTIES=True  # django-meta 2.x+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
